@@ -14,7 +14,7 @@ namespace View.Controllers
         public ActionResult Index(string pesquisa)
         {
             ContasPagarRepository repository = new ContasPagarRepository();
-            List<ContaPagar> contasPagar = new List<ContaPagar>();
+            List<ContaPagar> contasPagar = repository.ObterTodos(pesquisa);
 
             ViewBag.ContasPagar = contasPagar;
 
