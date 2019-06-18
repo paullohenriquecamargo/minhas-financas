@@ -1,0 +1,57 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Editar</title>
+</head>
+<body>
+    <form action="/contapagar/update" method="post">
+        <label for="campo-nome">Nome</label>
+        <input type="text" name="nome" id="cmapo-nome" 
+               value="@ViewBag.ContaPagar.Nome"/>
+
+        <label for="campo-valor">Valor</label>
+        <input type="text" name="valor" id="campo-valor" value="@ViewBag.ContaPagar.Valor" />
+
+        <label for="campo-tipo">Tipo</label>
+        <input type="text" name="tipo" id="campo-tipo" value="@ViewBag.ContaPagar.Tipo" />
+
+        <label for="campo-descricao">Descrição</label>
+        <textarea name="descricao"></textarea>
+
+        <label for="campo-estatus">Status</label>
+        <select name="estatus">
+            @if (ViewBag.ContaPagar.Estatus == "pendente")
+            {
+                <option value="pendente" selected="selected">Pendente</option>
+            }else{
+                <option value="pendente">Pendente</option>
+            }
+            @if (ViewBag.ContaPagar.Estatus == "atrasada")
+            {
+                <option value="atrasada" selected="selected">Atrasada</option>
+            }else{
+                <option value="atrasada">Atrasada</option>
+            }
+            @if (ViewBag.ContaPagar.Estatus == "paga")
+            {
+                <option value="paga" selected="selected">Paga</option>
+            }else{
+                <option value="paga">Paga</option>
+            }
+        </select>
+            
+        <input type="text" name="id" value="@ViewBag.ContaPagar.Id" />
+        <button type="submit">Salvar</button>
+
+    </form>
+   
+   
+</body>
+</html>

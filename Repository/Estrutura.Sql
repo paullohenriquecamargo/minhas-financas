@@ -10,6 +10,6 @@
 INSERT INTO contaspagar (nome, valor) VALUES 
 ('Conta de agua', 12.0);
 
-SELECT nome, valor FROM contaspagar;
+SELECT * FROM contaspagar;
 
-DELETE FROM contaspagar WHERE nome = 'Conta de agua';
+DELETE FROM contaspagar WHERE valor > 1;

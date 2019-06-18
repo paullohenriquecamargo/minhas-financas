@@ -21,7 +21,7 @@ namespace Repository
         public bool Apagar(int id)
         {
             SqlCommand comando = conexao.Conectar();
-            comando.CommandText = @"DELETTE FROM contaspagar WHERE id = @ID";
+            comando.CommandText = @"DELETE FROM contaspagar WHERE id = @ID";
             comando.Parameters.AddWithValue("@ID", id);
             int quantidadeafetada = comando.ExecuteNonQuery();
             comando.Connection.Close();
@@ -95,7 +95,7 @@ VALUES (@NOME, @VALOR, @TIPO, @DESCRICAO, @ESTATUS)";
             SqlCommand comando = conexao.Conectar();
             comando.CommandText = @"SELECT * FROM contaspagar WHERE nome LIKE @NOME";
 
-            busca = $"%{busca}$";
+            busca = $"%{busca}%";
             comando.Parameters.AddWithValue("@NOME", busca);
             DataTable tabela = new DataTable();
             tabela.Load(comando.ExecuteReader());
@@ -110,7 +110,7 @@ VALUES (@NOME, @VALOR, @TIPO, @DESCRICAO, @ESTATUS)";
                 contaPagar.Valor = Convert.ToDecimal(linha["valor"]);
                 contaPagar.Tipo = linha["tipo"].ToString();
                 contaPagar.Descricao = linha["descricao"].ToString();
-                contaPagar.Estatus = linha["esatus"].ToString();
+                contaPagar.Estatus = linha["estatus"].ToString();
                 contasPagar.Add(contaPagar);
             }
             return contasPagar;                
