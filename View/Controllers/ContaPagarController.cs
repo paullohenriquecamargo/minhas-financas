@@ -53,7 +53,6 @@ namespace View.Controllers
             ContaPagar contaPagar = repository.ObterPeloId(id);
             ViewBag.ContaPagar = contaPagar;
             return View();
-
         }
 
         public ActionResult Update(int id, string nome, decimal valor, string tipo, string descricao, string estatus)

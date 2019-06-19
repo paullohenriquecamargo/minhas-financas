@@ -12,10 +12,12 @@ namespace Repository
     public class ContaReceberRepository : IRepositoryContaReceber
     {
         private Conexao conexao;
+
         public ContaReceberRepository()
         {
             conexao = new Conexao();
         }
+
         public bool Apagar(int id)
         {
             SqlCommand comando = conexao.Conectar();
@@ -25,10 +27,11 @@ namespace Repository
             comando.Connection.Close();
             return quantidadeafetada == 1;
         }
+
         public bool Atualizar(ContaReceber contaReceber)
         {
             SqlCommand comando = conexao.Conectar();
-            comando.CommandText = @"UPDATE contareceber SET 
+            comando.CommandText = @"UPDATE contasreceber SET 
 nome = @NOME,
 valor = @VALOR,
 tipo = @TIPO,
@@ -40,14 +43,16 @@ WHERE id = @ID";
             comando.Parameters.AddWithValue("@TIPO", contaReceber.Tipo);
             comando.Parameters.AddWithValue("@DESCRICAO", contaReceber.Descricao);
             comando.Parameters.AddWithValue("@ESTATUS", contaReceber.Estatus);
-            int quantidadeafetada = comando.ExecuteNonQuery();
+            comando.Parameters.AddWithValue("@ID", contaReceber.Id);
+            int quantidadeafetada = Convert.ToInt32(comando.ExecuteNonQuery());
             comando.Connection.Close();
             return quantidadeafetada == 1;
         }
+
         public int Inserir(ContaReceber contaReceber)
         {
             SqlCommand comando = conexao.Conectar();
-            comando.CommandText = @"INSERT INTO (nome, valor, tipo, descricao, estatus)
+            comando.CommandText = @"INSERT INTO contasreceber(nome, valor, tipo, descricao, estatus)
 OUTPUT INSERTED.ID
 VALUES (@NOME, @VALOR, @TIPO, @DESCRICAO, @ESTATUS)";
             comando.Parameters.AddWithValue("@NOME", contaReceber.Nome);
@@ -55,10 +60,11 @@ VALUES (@NOME, @VALOR, @TIPO, @DESCRICAO, @ESTATUS)";
             comando.Parameters.AddWithValue("@TIPO", contaReceber.Tipo);
             comando.Parameters.AddWithValue("@DESCRICAO", contaReceber.Descricao);
             comando.Parameters.AddWithValue("@ESTATUS", contaReceber.Estatus);
-            int id = Convert.ToInt32(comando.ExecuteScalar());
+            int id = Convert.ToInt32(comando.ExecuteNonQuery());
             comando.Connection.Close();
             return id;                
         }
+
         public ContaReceber ObterPeloId(int id)
         {
             SqlCommand comando = conexao.Conectar();
@@ -82,10 +88,11 @@ VALUES (@NOME, @VALOR, @TIPO, @DESCRICAO, @ESTATUS)";
 
             return contaReceber;
         }
+
         public List<ContaReceber> ObterTodos(string busca)
         {
             SqlCommand comando = conexao.Conectar();
-            comando.CommandText = "SELECT * FROM contasreceber WHERE nme LIKE @NOME";
+            comando.CommandText = "SELECT * FROM contasreceber WHERE nome LIKE @NOME";
 
             busca = $"%{busca}%";
             comando.Parameters.AddWithValue("@NOME", busca);
@@ -107,6 +114,5 @@ VALUES (@NOME, @VALOR, @TIPO, @DESCRICAO, @ESTATUS)";
             }
             return contasReceber;
         }
-
     }
 }

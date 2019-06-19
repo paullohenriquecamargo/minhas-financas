@@ -42,8 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conexao.cs" />
+    <Compile Include="ContaReceberRepository.cs" />
     <Compile Include="ContasPagarRepository.cs" />
     <Compile Include="IRepositoryContaPagar.cs" />
+    <Compile Include="IRepositoryContaReceber.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

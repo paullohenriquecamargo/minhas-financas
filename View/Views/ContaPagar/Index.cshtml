@@ -29,7 +29,7 @@
                     <th>Nome</th>
                     <th>Valor</th>
                     <th>Tipo</th>
-                    <th>Descrição</th>
+                    <th>Estatus</th>
                     <th>Ação</th>
                 </tr>
             </thead>
@@ -41,7 +41,7 @@
                             <td>@ViewBag.ContasPagar[i].Nome</td>
                             <td>@ViewBag.ContasPagar[i].Valor</td>
                             <td>@ViewBag.ContasPagar[i].Tipo</td>
-                            <td>@ViewBag.ContasPagar[i].Descricao</td>
+                            <td>@ViewBag.ContasPagar[i].Estatus</td>
                             <td>
                                 <a href="/contapagar/editar?id=@ViewBag.ContasPagar[i].Id">Editar</a>
                                 <a href="/contapagar/apagar?id=@ViewBag.ContasPagar[i].Id">Apagar</a>

@@ -1,0 +1,50 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Editar</title>
+</head>
+<body>
+    <div> 
+        <form action="/contareceber/update" method="post">
+            <label for="campo-nome">Nome</label>
+            <input type="text" name="nome" value="@ViewBag.ContaReceber.Nome" id="campo-nome"/>
+
+            <label for="campo-valor">Valor</label>
+            <input type="text" name="valor" value="@ViewBag.ContaReceber.Valor" />
+
+            <label for="campo-tipo">Tipo</label>
+            <input type="text" name="tipo" value="@ViewBag.ContaReceber.Tipo" />
+
+            <label for="campo-descricao">Descrição</label>
+            <textarea name="descricao" value="@ViewBag.ContaReceber.Descricao"></textarea>
+
+            <label for="campo-estatus">Status</label>
+            <select name="estatus">
+                @if (ViewBag.ContaReceber.Estatus == "pendente")
+                {
+                    <option value="pendente" selected="selected">Pendente</option>
+                }else{
+                    <option value="pendente">Pendente</option>
+                }
+                @if (ViewBag.ContaReceber.Estatus == "recebido")
+                {
+                    <option value="recebido" selected="selected">Recebido</option>
+                }else{
+                    <option value="recebido">Recebido</option>
+                }
+            </select>
+
+            <input type="text" name="id" value="@ViewBag.ContaReceber.Id" />
+            <button type="submit">Salvar</button>
+
+        </form>
+    </div>
+</body>
+</html>

@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    class ContaReceber
+    public class ContaReceber
     {
+        public int Id;
+        public string Nome;
+        public decimal Valor;
+        public string Tipo;
+        public string Descricao;
+        public string Estatus;
     }
 }

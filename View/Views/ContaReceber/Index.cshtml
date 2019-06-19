@@ -1,0 +1,54 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/ContaReceberIndex.css" rel="stylesheet" />
+</head>
+<body>
+    <div> 
+        <h1>Lista de Contas a Receber</h1>
+        <h3>@ViewBag.ContaReceber</h3>
+    </div>
+    <a href="/contareceber/cadastro">Novo Registro</a>
+    <form action="/contareceber/index" method="get">
+        <label for="campo-pesquisa">Pesquisa</label>
+        <input type="text" id="campo-pesquisa" name="pesquisa"/>
+    </form>
+    <div>
+        <table name="tabela">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nome</th>
+                    <th>Valor</th>
+                    <th>Tipo</th>
+                    <th>Status</th>
+                </tr>
+           </thead>
+              <tbody>
+                @for(int i = 0; i < ViewBag.ContasReceber.Count; i++)
+                {
+                    <tr>
+                        <td>@ViewBag.ContasReceber[i].Id</td>
+                        <td>@ViewBag.ContasReceber[i].Nome</td>
+                        <td>@ViewBag.ContasReceber[i].Valor</td>
+                        <td>@ViewBag.ContasReceber[i].Tipo</td>                        
+                        <td>@ViewBag.ContasReceber[i].Estatus</td>
+                        <td>
+                            <a href="/contareceber/editar?id=@ViewBag.ContasReceber[i].Id">Editar</a>
+                            <a href="/contareceber/apagar?id=@ViewBag.ContasReceber[i].Id">Apagar</a>
+                        </td>
+                    </tr>
+                }
+              </tbody>
+        </table>
+    </div>
+</body>
+</html>
